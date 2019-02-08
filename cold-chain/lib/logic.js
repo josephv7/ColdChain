@@ -55,10 +55,30 @@ async function temperatureDrop(tx) {
     // Save the old value of the asset.
     const oldTemperature = tx.asset.temperature;
     const oldLocation = tx.asset.location;
+    const oldStatus = tx.asset.status;
 
     // Update the asset with the new value.
     tx.asset.temperature = tx.newTemperature;
     tx.asset.location = tx.newLocation;
+  	tx.asset.status = tx.newStatus;
+  if(oldStatus == "0"){
+  if(parseInt(tx.asset.temperature) > 1){
+  	tx.asset.status = "1";
+    const twiliocall = request.get('http://192.168.43.61:5000/temperature');
+  }else{
+    tx.asset.status = oldStatus;
+  }
+  }else{
+    tx.asset.status = oldStatus;
+  }
+
+   // if(tx.asset.status == 1){
+     //   const twiliocall = request.get('http://192.168.43.61:5000/temperature');
+   // }
+
+    if(!(oldLocation == tx.asset.location)){
+        const twiliocall = request.get('http://192.168.43.61:5000/location');
+    }
 
     // Get the asset registry for the asset.
     const assetRegistry = await getAssetRegistry('org.example.mynetwork.MedicinePackage');
@@ -70,6 +90,8 @@ async function temperatureDrop(tx) {
     event.asset = tx.asset;
     event.oldTemperature = oldTemperature;
     event.oldLocation = oldLocation;
+    event.oldStatus = oldStatus;
+    event.newStatus = tx.asset.status;
     event.newTemperature = tx.newTemperature;
     event.newLocation = tx.newLocation;
     emit(event);
@@ -104,5 +126,6 @@ async function holderChange(tx) {
     event.newHolder = tx.newHolder;
     emit(event);
 }
+
 
 
