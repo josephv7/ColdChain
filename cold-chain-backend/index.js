@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-app.get('/', async function(req, res) {
+app.get('/test', async function(req, res) {
 console.log('inside get method');
 console.log(req.query.temperature);
 console.log(req.query.location);
@@ -19,7 +19,7 @@ Request.post({
     "headers": { "content-type": "application/json" },
     "url": "http://localhost:3000/api/TemperatureDrop",
     "body": JSON.stringify({
-        "asset": "org.example.mynetwork.MedicinePackage#0002",
+        "asset": "org.example.mynetwork.MedicinePackage#0009",
         "newTemperature": String(req.query.temperature),
         "newLocation": String(req.query.location)
     })
