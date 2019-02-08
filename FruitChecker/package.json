@@ -9,6 +9,8 @@
   "author": "iamjosephvarghese",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/storage": "^2.4.2",
+    "@google-cloud/vision": "^0.24.0",
     "node-webcam": "^0.4.6"
   }
 }

@@ -13,8 +13,8 @@
 	<div id="results" ></div>
 	 
 	<!-- Webcam.min.js -->
-	<!-- <script type="text/javascript" src="webcamjs/webcam.min.js"></script> -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+	<script type="text/javascript" src="webcam.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script> -->
 	
 	<!-- Configure a few settings and attach camera -->
 	<script language="JavaScript">
@@ -24,7 +24,12 @@
 	  image_format: 'jpeg',
 	  jpeg_quality: 90
 	 });
+
+	//  if (Webcam.cameraIDs.length > 1) {
+            Webcam.cameraID = 1;
+        // }
 	 Webcam.attach( '#my_camera' );
+	 
 	
 	function take_snapshot() {
 	 
