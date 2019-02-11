@@ -33,11 +33,16 @@ node.on('ready', async () => {
     const version = await node.version()
   
     console.log('Version:', version.version)
+
+    var date = new Date();
+    var timeStampString = date.getDate() + '_' + date.getHours() + '_' + date.getMinutes() + '_' + date.getSeconds() + '.txt';
+    console.log('trial')
+    console.log(timeStampString);
   
     const filesAdded = await node.add({
-        // path: 'hello.txt',
+        path: timeStampString,
     // content: Buffer.from('Hello World 101222244')
-      path: Date.now().toString,
+      // path: timestamp,
       content: Buffer.from('Red Count : ' + req.query.red + ' & Green Count : ' + req.query.green + '. Timestamp : ' + Date.now().toString())
     })
   
