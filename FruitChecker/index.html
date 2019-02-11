@@ -57,6 +57,7 @@
 					var b=JSON.stringify({"requests":[{	"image":{	"content":noHeader},	"features": [{"type": "IMAGE_PROPERTIES"},	{"maxResults":1}]}]});
 					var e=new XMLHttpRequest;
 					var response;
+					var r,g,b;
 
 					e.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
@@ -64,6 +65,25 @@
 		console.log(this.responseText);
 		response = JSON.parse(this.responseText);
 		console.log(response.responses[0].imagePropertiesAnnotation.dominantColors.colors[0].color.red);
+		r = response.responses[0].imagePropertiesAnnotation.dominantColors.colors[0].color.red;
+		g = response.responses[0].imagePropertiesAnnotation.dominantColors.colors[0].color.green;
+		b = response.responses[0].imagePropertiesAnnotation.dominantColors.colors[0].color.blue;
+
+		axios.get('http://localhost:4001/gethsl?r='+r+'&g='+g+'&b='+b,).then(function (response) {
+	    console.log(response);
+			// temperature = response.data.temperature;
+			// var hslResponse = JSON.parse(response);
+			// console.log(hslResponse.data);
+	  }).then(function (response){
+			
+		}).catch(function (error) {
+	    console.log(error);
+	  });
+
+
+
+
+
   }
 };
 
