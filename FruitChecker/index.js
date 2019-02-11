@@ -46,8 +46,6 @@ if(Math.round(hsl[0]) > 0 && Math.round(hsl[0]) < 65 ){
 })
 
 
-
-
 let server = app.listen(4001, function() {
     console.log('Server is listening on port 4001')
 });

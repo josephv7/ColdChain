@@ -42,6 +42,11 @@
 	
 	<!-- Code to handle taking the snapshot and displaying it locally -->
 	<script language="JavaScript">
+
+		var redCount = 0;
+		var greenCount = 0;
+		var temp;
+
 		function take_snapshot() {
 			// take snapshot and get image data
 			Webcam.snap( function(data_uri) {
@@ -70,12 +75,28 @@
 		b = response.responses[0].imagePropertiesAnnotation.dominantColors.colors[0].color.blue;
 
 		axios.get('http://localhost:4001/gethsl?r='+r+'&g='+g+'&b='+b,).then(function (response) {
-	    console.log(response);
-			// temperature = response.data.temperature;
-			// var hslResponse = JSON.parse(response);
-			// console.log(hslResponse.data);
-	  }).then(function (response){
+			console.log(response.data);
+			temp = response.data;
+			console.log('temp' + temp);
+
+			if(temp.toString() == 'red'){
+				console.log('in website red');
+				redCount++;
+				console.log('redCount' + redCount);
+			}else if(temp.toString() == 'green'){
+				console.log('in website green')
+				greenCount++;
+				console.log('greenCount' + greenCount);
+			}
 			
+	  }).then(function (response){
+
+
+		
+
+			
+
+
 		}).catch(function (error) {
 	    console.log(error);
 	  });
