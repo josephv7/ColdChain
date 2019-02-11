@@ -26,13 +26,24 @@ console.log('inside ipfs');
 console.log(req.query.red);
 console.log(req.query.green);
 
+var fileHash;
+
+res.header("Access-Control-Allow-Origin", "*");
+res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
 
 const node = new IPFS()
 node.on('ready', async () => {
     console.log('iniside sample code')
-    const version = await node.version()
-  
-    console.log('Version:', version.version)
+
+    
+
+    // const version = await node.version()
+
+    
+    
+    // console.log('Version:', version.version)
 
     var date = new Date();
     var timeStampString = date.getDate() + '_' + date.getHours() + '_' + date.getMinutes() + '_' + date.getSeconds() + '.txt';
@@ -48,7 +59,10 @@ node.on('ready', async () => {
   
     console.log('Added file:', filesAdded[0].path, filesAdded[0].hash)
 
-
+    fileHash = filesAdded[0].hash;
+    console.log('test')
+    console.log(fileHash)
+    res.send(fileHash);
     try {
         await node.stop()
         console.log('Node stopped!')
@@ -56,20 +70,9 @@ node.on('ready', async () => {
         console.error('Node failed to stop cleanly!', error)
       }
 
-
+  
   })
   
-
-
-
-
-
-
-
-res.header("Access-Control-Allow-Origin", "*");
-res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
 
 })
 

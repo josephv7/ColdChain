@@ -46,15 +46,18 @@
 	<!-- Code to handle taking the snapshot and displaying it locally -->
 	<script language="JavaScript">
 
-		var redCount = 0;
+		var redCount = 1;
+		// make it 0
 		var greenCount = 0;
 		var temp;
 
 
 		function submit_data(){
 			if(redCount!=0 || greenCount!=0){
-				var urlQuery = 'http://localhost:40001?red=' + redCount + '&green=' + greenCount;
+				var urlQuery = 'http://localhost:5001/ipfs?red=' + redCount + '&green=' + greenCount;
 				axios.get(urlQuery).then(function (response) {
+
+					console.log(response.data);
 	    
 	  		}).then(function (response){
 			
@@ -93,7 +96,7 @@
 		g = response.responses[0].imagePropertiesAnnotation.dominantColors.colors[0].color.green;
 		b = response.responses[0].imagePropertiesAnnotation.dominantColors.colors[0].color.blue;
 
-		axios.get('http://localhost:4001/gethsl?r='+r+'&g='+g+'&b='+b,).then(function (response) {
+		axios.get('http://localhost:5001/gethsl?r='+r+'&g='+g+'&b='+b,).then(function (response) {
 			console.log(response.data);
 			temp = response.data;
 			console.log('temp' + temp);
