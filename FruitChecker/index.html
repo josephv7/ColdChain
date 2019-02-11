@@ -39,6 +39,9 @@
 	<form>
 		<input type=button value="Take Snapshot" onClick="take_snapshot()">
 	</form>
+	<form>
+			<input type=button value="Submit Data" onClick="submit_data()">
+		</form>
 	
 	<!-- Code to handle taking the snapshot and displaying it locally -->
 	<script language="JavaScript">
@@ -46,6 +49,22 @@
 		var redCount = 0;
 		var greenCount = 0;
 		var temp;
+
+
+		function submit_data(){
+			if(redCount!=0 || greenCount!=0){
+				var urlQuery = 'http://localhost:40001?red=' + redCount + '&green=' + greenCount;
+				axios.get(urlQuery).then(function (response) {
+	    
+	  		}).then(function (response){
+			
+				}).catch(function (error) {
+	   			 console.log(error);
+	  		});
+			}
+		}
+
+
 
 		function take_snapshot() {
 			// take snapshot and get image data
