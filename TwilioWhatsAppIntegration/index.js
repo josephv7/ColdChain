@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-const accountSid = 'sid';
+const accountSid = 'id';
 const authToken = 'token';
 const client = require('twilio')(accountSid, authToken);
 
@@ -43,7 +43,7 @@ app.get('/location', function (req, res) {
 });
 
 
-pp.get('/destination', function (req, res) {
+app.get('/destination', function (req, res) {
   console.log('Location Change');
   console.log(req.query.temperature)
   console.log(req.query.location)
