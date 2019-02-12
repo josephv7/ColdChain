@@ -10,10 +10,22 @@
 
 	<script>
 
-var temperature;
-	        axios.get('https://fd2141b7.ngrok.io/api/MedicinePackage/0008').then(function (response) {
-	    console.log(response.data.temperature);
-			temperature = response.data.temperature;
+var query = window.location.search.substring(1);
+console.log(query);
+var split = query.split('=')
+console.log(split[1])
+var blockchainUrl = 'https://44c8ff05.ngrok.io/api/MedicinePackage/' + split[1]
+
+var status;
+var displayText;
+	        axios.get(blockchainUrl).then(function (response) {
+	    console.log(response.data.status);
+			status= response.data.status;
+			if(status == '0')
+						displayText = 'OK'
+			else
+						displayText = 'Tampered!'
+
 	  }).then(function (response){
 			doNext();
 		}).catch(function (error) {
@@ -85,7 +97,8 @@ function doNext(){
 	var geometry	= new THREE.CubeGeometry(1,1,1);
 	var material	= new THREE.MeshNormalMaterial({
 		transparent : true,
-		opacity: 0.5,
+		// opacity set to 0
+		opacity: 0,
 		side: THREE.DoubleSide
 	});
 	var mesh	= new THREE.Mesh( geometry, material );
@@ -97,11 +110,11 @@ console.log('hi');
 	loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
 
 		console.log('hi');
-		console.log(temperature);
+		console.log(status);
 
-		// Temperature value fetched from the api call is passed in the next line
+		// Status value fetched from the api call is passed in the next line
 
-	  var textGeometry = new THREE.TextGeometry( temperature, {
+	  var textGeometry = new THREE.TextGeometry( displayText, {
 
 		font: font,
 
@@ -114,10 +127,21 @@ console.log('hi');
 		bevelEnabled: true
 
 	  });
+// Set color here
 
-	  var textMaterial = new THREE.MeshPhongMaterial(
+		if(status == '0'){
+
+		var textMaterial = new THREE.MeshPhongMaterial(
 		{ color: 0x00ff00, specular: 0xffffff }
 	  );
+
+		}else{
+			var textMaterial = new THREE.MeshPhongMaterial(
+		{ color: 0x00ff00, specular: 0xffffff }
+	  );
+		}
+
+	  
 
 	  var mesh = new THREE.Mesh( textGeometry, textMaterial );
 
