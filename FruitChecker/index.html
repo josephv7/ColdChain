@@ -20,6 +20,9 @@
 	<!-- <h3>Demonstrates simple 320x240 capture &amp; display</h3> -->
 	
 	<div id="my_camera"></div>
+
+	
+
 	
 	<!-- First, include the Webcam.js JavaScript Library -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
@@ -42,11 +45,16 @@
 	<form>
 			<input type=button value="Submit Data" onClick="submit_data()">
 		</form>
+
+		<br>
+	<hr>
+	<div id="detectedColor"></div>
+	<div id="hashedFile"></div>
 	
 	<!-- Code to handle taking the snapshot and displaying it locally -->
 	<script language="JavaScript">
 
-		var redCount = 1;
+		var redCount = 0;
 		// make it 0
 		var greenCount = 0;
 		var temp;
@@ -58,6 +66,8 @@
 				axios.get(urlQuery).then(function (response) {
 
 					console.log(response.data);
+					document.getElementById('hashedFile').innerHTML = 
+					'<h3>Hashed File :' + response.data + '</h3>';
 	    
 	  		}).then(function (response){
 			
@@ -104,19 +114,20 @@
 			if(temp.toString() == 'red'){
 				console.log('in website red');
 				redCount++;
+				document.getElementById('detectedColor').innerHTML = 
+					'<h2>Color:Red</h2>';
 				console.log('redCount' + redCount);
 			}else if(temp.toString() == 'green'){
 				console.log('in website green')
 				greenCount++;
+				document.getElementById('detectedColor').innerHTML = 
+					'<h2>Color:Green</h2>';
 				console.log('greenCount' + greenCount);
 			}
+
+			
 			
 	  }).then(function (response){
-
-
-		
-
-			
 
 
 		}).catch(function (error) {
