@@ -1,8 +1,8 @@
 var express = require('express');
 var app = express();
 
-const accountSid = 'sid';
-const authToken = 'token';
+const accountSid = 'Account_ID';
+const authToken = 'Auth_Token';
 const client = require('twilio')(accountSid, authToken);
 
 app.get('/temperature', function (req, res) {
@@ -12,7 +12,7 @@ app.get('/temperature', function (req, res) {
 
   client.messages
         .create({
-          body: 'Tampered!' + req.query.temperature,
+          body: 'Your package was tampered at ' + req.query.location + ' and the temperature has changed to ' + req.query.temperature + ' Degree Celcius.',
           from: 'whatsapp:+14155238886',
           to: 'whatsapp:+918289940688'
         })
@@ -31,7 +31,7 @@ app.get('/location', function (req, res) {
 
   client.messages
         .create({
-          body: 'Location changed!',
+          body: 'Your package has arrived at ' + req.query.location + ' with temperature ' + req.query.temperature + ' Degree Celcius.',
           from: 'whatsapp:+14155238886',
           to: 'whatsapp:+918289940688'
         })
@@ -43,7 +43,7 @@ app.get('/location', function (req, res) {
 });
 
 
-pp.get('/destination', function (req, res) {
+app.get('/destination', function (req, res) {
   console.log('Location Change');
   console.log(req.query.temperature)
   console.log(req.query.location)
