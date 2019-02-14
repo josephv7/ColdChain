@@ -14,7 +14,7 @@ var query = window.location.search.substring(1);
 console.log(query);
 var split = query.split('=')
 console.log(split[1])
-var blockchainUrl = 'https://44c8ff05.ngrok.io/api/MedicinePackage/' + split[1]
+var blockchainUrl = 'https://dbbeea74.ngrok.io/api/MedicinePackage/' + split[1]
 
 var status;
 var displayText;
@@ -94,11 +94,11 @@ function doNext(){
 		patternUrl : THREEx.ArToolkitContext.baseURL + '../data/patt.hiro'
 	})
 
-	var geometry	= new THREE.CubeGeometry(1,1,1);
+	var geometry	= new THREE.CubeGeometry(2,2,2);
 	var material	= new THREE.MeshNormalMaterial({
 		transparent : true,
 		// opacity set to 0
-		opacity: 0,
+		opacity: 0.5,
 		side: THREE.DoubleSide
 	});
 	var mesh	= new THREE.Mesh( geometry, material );
@@ -141,7 +141,7 @@ console.log('hi');
 	  );
 		}
 
-	  
+
 
 	  var mesh = new THREE.Mesh( textGeometry, textMaterial );
 
