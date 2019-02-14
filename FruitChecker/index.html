@@ -15,18 +15,18 @@
 </head>
 <body>
 	<div id="results"></div>
-	
+
 	<h1>Mango Sorter</h1>
 	<!-- <h3>Demonstrates simple 320x240 capture &amp; display</h3> -->
-	
+
 	<div id="my_camera"></div>
 
-	
 
-	
+
+
 	<!-- First, include the Webcam.js JavaScript Library -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
-	
+
 	<!-- Configure a few settings and attach camera -->
 	<script language="JavaScript">
 		Webcam.set({
@@ -37,7 +37,7 @@
 		});
 		Webcam.attach( '#my_camera' );
 	</script>
-	
+
 	<!-- A button for taking snaps -->
 	<form>
 		<input type=button value="Take Snapshot" onClick="take_snapshot()">
@@ -50,7 +50,7 @@
 	<hr>
 	<div id="detectedColor"></div>
 	<div id="hashedFile"></div>
-	
+
 	<!-- Code to handle taking the snapshot and displaying it locally -->
 	<script language="JavaScript">
 
@@ -66,11 +66,11 @@
 				axios.get(urlQuery).then(function (response) {
 
 					console.log(response.data);
-					document.getElementById('hashedFile').innerHTML = 
+					document.getElementById('hashedFile').innerHTML =
 					'<h3>Hashed File :' + response.data + '</h3>';
-	    
+
 	  		}).then(function (response){
-			
+
 				}).catch(function (error) {
 	   			 console.log(error);
 	  		});
@@ -83,8 +83,8 @@
 			// take snapshot and get image data
 			Webcam.snap( function(data_uri) {
 				// display results in page
-				document.getElementById('results').innerHTML = 
-					'<h2>Here is your image:</h2>' + 
+				document.getElementById('results').innerHTML =
+					'<h2>Here is your image:</h2>' +
 					'<img src="'+data_uri+'"/>';
 					console.log(data_uri);
 					var noHeader = data_uri.replace(/^data:image\/(png|jpg|jpeg);base64,/, "")
@@ -114,19 +114,19 @@
 			if(temp.toString() == 'red'){
 				console.log('in website red');
 				redCount++;
-				document.getElementById('detectedColor').innerHTML = 
+				document.getElementById('detectedColor').innerHTML =
 					'<h2>Color:Red</h2>';
 				console.log('redCount' + redCount);
 			}else if(temp.toString() == 'green'){
 				console.log('in website green')
 				greenCount++;
-				document.getElementById('detectedColor').innerHTML = 
+				document.getElementById('detectedColor').innerHTML =
 					'<h2>Color:Green</h2>';
 				console.log('greenCount' + greenCount);
 			}
 
-			
-			
+
+
 	  }).then(function (response){
 
 
@@ -148,9 +148,9 @@
 
 
 					// };
-					e.open("POST","https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAWMDKyl8B_CNEToy1fCwX8wh8LWLFf3_0",!0);
+					e.open("POST","https://vision.googleapis.com/v1/images:annotate?key=API_KEY_HERE",!0);
 					e.send(b)
-					
+
 
 
 					// let request = {"requests":[{	"image":{	"content":noHeader},	"features": [{"type": "IMAGE_PROPERTIES"},]}]}
@@ -158,7 +158,7 @@
 
 				// 	axios.post('https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAWMDKyl8B_CNEToy1fCwX8wh8LWLFf3_0', {
 				// 		b
-						
+
   			// }).then(function (response) {
 				// console.log('inside success');
     		// console.log(response);
@@ -166,8 +166,8 @@
 				// 	console.log('inside error');
     		// console.log(error);
 				// });
-				
-				
+
+
 
 
 
@@ -175,6 +175,6 @@
 			} );
 		}
 	</script>
-	
+
 </body>
 </html>
