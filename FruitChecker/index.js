@@ -97,7 +97,7 @@ console.log('HSL Main Value' + Math.round(hsl[0]));
 if(Math.round(hsl[0]) > 0 && Math.round(hsl[0]) < 65 ){
     res.send('red');
     console.log('red')
-}else if(Math.round(hsl[0]) > 120 && Math.round(hsl[0]) < 180){
+}else if(Math.round(hsl[0]) > 100 && Math.round(hsl[0]) < 180){
     res.send('green');
     console.log('green')
 }
